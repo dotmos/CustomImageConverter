@@ -1,0 +1,9 @@
+D:\Projects\CustomImageConverter\CustomImageConverter\bin\Debug\CustomImageConverter.exe.config
+D:\Projects\CustomImageConverter\CustomImageConverter\bin\Debug\CustomImageConverter.exe
+D:\Projects\CustomImageConverter\CustomImageConverter\bin\Debug\CustomImageConverter.pdb
+D:\Projects\CustomImageConverter\CustomImageConverter\obj\Debug\CustomImageConverter.csprojResolveAssemblyReference.cache
+D:\Projects\CustomImageConverter\CustomImageConverter\obj\Debug\CustomImageConverter.Properties.Resources.resources
+D:\Projects\CustomImageConverter\CustomImageConverter\obj\Debug\CustomImageConverter.csproj.GenerateResource.Cache
+D:\Projects\CustomImageConverter\CustomImageConverter\obj\Debug\CustomImageConverter.exe
+D:\Projects\CustomImageConverter\CustomImageConverter\obj\Debug\CustomImageConverter.pdb
+D:\Projects\CustomImageConverter\CustomImageConverter\obj\Debug\CustomImageConverter.Form1.resources
