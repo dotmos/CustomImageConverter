@@ -10,6 +10,5 @@ D:\Projects\CustomImageConverter\CustomImageConverter\obj\Release\CustomImageCon
 D:\Projects\CustomImageConverter\CustomImageConverter\bin\Release\CSScriptLibrary.dll
 D:\Projects\CustomImageConverter\CustomImageConverter\bin\Release\CSScriptLibrary.xml
 D:\Projects\CustomImageConverter\CustomImageConverter\bin\Release\Mono.CSharp.dll
-D:\Projects\CustomImageConverter\CustomImageConverter\bin\Release\ConverterScripts\ST7735.cs
 D:\Projects\CustomImageConverter\CustomImageConverter\bin\Release\ConverterScripts\Monochrome.cs
 D:\Projects\CustomImageConverter\CustomImageConverter\bin\Release\ConverterScripts\Grayscale.cs

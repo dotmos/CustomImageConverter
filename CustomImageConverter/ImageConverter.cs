@@ -8,6 +8,7 @@ public interface IImageConverterScript
 {
     byte[] Encode(byte[] pixels, int width, int height);
     DecodeResult Decode(byte[] data);
+    string FileEnding();
 }
 public class DecodeResult{
     public byte[] pixels;
@@ -35,7 +36,8 @@ public class ImageConverter
             _Source = value;
         }
     }
-    public string converterScriptName;
+    string converterScriptName;
+    IImageConverterScript converterScript;
 
     IntPtr Iptr = IntPtr.Zero;
     BitmapData bitmapData = null;
@@ -231,6 +233,13 @@ public class ImageConverter
         }
     }
 
+    public void LoadScript(string scriptFileName) {
+        if(scriptFileName != converterScriptName) {
+            converterScriptName = scriptFileName;
+            this.converterScript = LoadScript();
+        }
+    }
+
 
     /// <summary>
     /// Encodes the source bitmap.
@@ -255,19 +264,15 @@ public class ImageConverter
 
     byte[] RunEncodingScript()
     {
-        if (string.IsNullOrEmpty(converterScriptName))
-        {
+        if (converterScript == null) {
             Console.WriteLine("No converter script set!");
             return null;
         }
 
-        //Load converter script
-        IImageConverterScript script = LoadScript();
-
         //Encode image using converter script
         try
         {
-            return script.Encode(Pixels, Width, Height);
+            return converterScript.Encode(Pixels, Width, Height);
         }
         catch (Exception error)
         {
@@ -303,25 +308,37 @@ public class ImageConverter
 
     public DecodeResult RunDecodingScript(byte[] inData)
     {
-        if (string.IsNullOrEmpty(converterScriptName))
-        {
+        if (converterScript == null) {
             Console.WriteLine("No converter script set!");
             return null;
         }
-
-        //Load converter script
-        IImageConverterScript script = LoadScript();
-        if (script == null)
-            return null;
+            
 
         //Decode image using converter script
         try
         {
-            return script.Decode(inData);
+            return converterScript.Decode(inData);
         }
         catch (Exception error)
         {
             System.Windows.Forms.MessageBox.Show("Could not decode image : \n" + error.Message,
+                converterScriptName, System.Windows.Forms.MessageBoxButtons.OK, System.Windows.Forms.MessageBoxIcon.Exclamation);
+            return null;
+        }
+    }
+
+    public string GetFileEnding() {
+        if (converterScript == null) {
+            Console.WriteLine("No converter script set!");
+            return null;
+        }
+
+        //Get file ending
+        try {
+            return converterScript.FileEnding();
+        }
+        catch (Exception error) {
+            System.Windows.Forms.MessageBox.Show("Could not encode image : \n" + error.Message,
                 converterScriptName, System.Windows.Forms.MessageBoxButtons.OK, System.Windows.Forms.MessageBoxIcon.Exclamation);
             return null;
         }

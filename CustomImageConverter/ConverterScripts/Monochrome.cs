@@ -1,6 +1,12 @@
 ﻿using System;
 
 public class Monochrome{
+    readonly string fileEnding = "mon";
+
+    public string FileEnding() {
+        return fileEnding;
+    }
+
     public byte[] Encode(byte[] pixels, int width, int height)
     {
         //Output byte array

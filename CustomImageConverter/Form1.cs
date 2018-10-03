@@ -25,6 +25,12 @@ namespace CustomImageConverter
 
             CheckFitImage();
             InitializeScriptListBox();
+
+            //saveImageFileDialog.Filter = "Binary(*.bin) | *.bin | All files(*.*) | *.*";
+            saveImageFileDialog.Filter = "All files(*.*) | *.*";
+
+            //Load first converter
+            //if(scriptListBox.Items.Count > 0) imageConverter.LoadScript(scriptListBox.Items[0] as string);
         }
 
         private void clearButton_Click(object sender, EventArgs e)
@@ -49,7 +55,6 @@ namespace CustomImageConverter
                 }
                 else //Try to decode
                 {
-                    imageConverter.converterScriptName = scriptListBox.SelectedItem as string;
                     imageConverter.Decode(System.IO.File.ReadAllBytes(openImageFileDialog.FileName));
                     if (imageConverter.Source != null)
                     {
@@ -67,10 +72,13 @@ namespace CustomImageConverter
 
         void CheckFitImage()
         {
-            if (fitImageCheckBox.Checked)
+            if (fitImageCheckBox.Checked) {
+                mainPictureBox.InterpolationMode = System.Drawing.Drawing2D.InterpolationMode.NearestNeighbor;
                 mainPictureBox.SizeMode = PictureBoxSizeMode.Zoom;
-            else
+            } else {
+                mainPictureBox.InterpolationMode = System.Drawing.Drawing2D.InterpolationMode.Default;
                 mainPictureBox.SizeMode = PictureBoxSizeMode.Normal;
+            }
         }
 
         private void convertButton_Click(object sender, EventArgs e)
@@ -80,7 +88,7 @@ namespace CustomImageConverter
                 return;
 
             //Convert image
-            SetSaveName(fileName);
+            SetSaveDialogFileName(fileName);
             //Open save as dialog
             if (saveImageFileDialog.ShowDialog() == System.Windows.Forms.DialogResult.OK)
             {
@@ -96,41 +104,27 @@ namespace CustomImageConverter
                 if (openImageFileDialog.FileNames.Length == 0)
                     return;
 
-                SetSaveName(openImageFileDialog.FileNames[0]);
+                string[] fileNames = openImageFileDialog.FileNames;
 
-                if (saveImageFileDialog.ShowDialog() == System.Windows.Forms.DialogResult.OK)
+                progressBar.Maximum = openImageFileDialog.FileNames.Length;
+
+                //Start batch conversion
+                for (int i = 0; i < openImageFileDialog.FileNames.Length; ++i )
                 {
-                    //Create naming sheme for batch conversion saves
-                    int _cutIndex = saveImageFileDialog.FileName.LastIndexOf('.');
-                    string _saveFileName = saveImageFileDialog.FileName;
-                    string _saveFileEnding = saveImageFileDialog.FileName;
-                    if (_cutIndex > 0)
-                    {
-                        _saveFileName = _saveFileName.Remove(_cutIndex);
-                        _saveFileEnding = _saveFileEnding.Remove(0, _cutIndex);
-                    }
-                    else
-                    {
-                        _saveFileEnding = "";
-                    }
-
-                    progressBar.Maximum = openImageFileDialog.FileNames.Length;
-
-                    //Start batch conversion
-                    for (int i = 0; i < openImageFileDialog.FileNames.Length; ++i )
-                    {
-                        SetPicture(openImageFileDialog.FileNames[i]);
-                        if (mainPictureBox.Image == null)
-                            continue;
-                        EncodeAndSave((Bitmap)mainPictureBox.Image, _saveFileName + i.ToString() + _saveFileEnding);
-                        progressBar.Value = i;
-                    }
-
-                    progressBar.Value = 0;
-                    progressBar.Maximum = 0;
-                    
-                    MessageBox.Show("All Done!", "Done", MessageBoxButtons.OK, MessageBoxIcon.None);
+                    string fileName = fileNames[i];
+                
+                    //Save
+                    SetPicture(fileName);
+                    if (mainPictureBox.Image == null)
+                        continue;
+                    EncodeAndSave((Bitmap)mainPictureBox.Image, fileName);
+                    progressBar.Value = i;
                 }
+
+                progressBar.Value = 0;
+                progressBar.Maximum = 0;
+                    
+                MessageBox.Show("All Done!", "Done", MessageBoxButtons.OK, MessageBoxIcon.None);
             }
         }
 
@@ -147,32 +141,45 @@ namespace CustomImageConverter
             CheckDithering(true);
         }
 
-        void SetSaveName(string inFilename)
+        /// <summary>
+        /// Sets the filename for the savedialog based on image path
+        /// </summary>
+        /// <param name="pathToImage"></param>
+        void SetSaveDialogFileName(string pathToImage)
         {
-            //Set export name to import name, but with other ending
-            saveImageFileDialog.FileName = inFilename;
-            //Remove file ending
-            int _cutIndex = saveImageFileDialog.FileName.LastIndexOf('.');
-            if (_cutIndex > 0)
-                saveImageFileDialog.FileName = saveImageFileDialog.FileName.Remove(_cutIndex);
-            //remove folders
-            _cutIndex = saveImageFileDialog.FileName.LastIndexOf('\\');
+            saveImageFileDialog.FileName = pathToImage;
+
+            //Remove folders
+            int _cutIndex = saveImageFileDialog.FileName.LastIndexOf('\\');
             if (_cutIndex > 0)
                 saveImageFileDialog.FileName = saveImageFileDialog.FileName.Remove(0, _cutIndex + 1);
-        }
 
+            //Remove file ending
+            _cutIndex = saveImageFileDialog.FileName.LastIndexOf('.');
+            if (_cutIndex > 0)
+                saveImageFileDialog.FileName = saveImageFileDialog.FileName.Remove(_cutIndex);
+
+            //Set new file ending, based on selected converter
+            saveImageFileDialog.FileName = saveImageFileDialog.FileName  + "." + imageConverter.GetFileEnding();
+        }
+        
+        /// <summary>
+        /// Initialize the script list box
+        /// </summary>
         void InitializeScriptListBox()
         {
+            //Load all converter scripts
             string[] _scripts = System.IO.Directory.GetFiles(scriptPath, "*.cs", System.IO.SearchOption.AllDirectories);
             foreach (string s in _scripts)
                 scriptListBox.Items.Add(s.Remove(0,scriptPath.Length));
 
+            //Select first script in list
             if(_scripts.Length > 0)
                 scriptListBox.SelectedItem = _scripts[0].Remove(0, scriptPath.Length);
         }
 
         /// <summary>
-        /// Encode the bitmap and save it at path
+        /// Encode the bitmap and save it at path. Filenending is auto appended based on selected encoder.
         /// </summary>
         /// <param name="b"></param>
         /// <param name="path"></param>
@@ -184,9 +191,14 @@ namespace CustomImageConverter
                 return;
             }
             imageConverter.Source = b;
-            imageConverter.converterScriptName = scriptListBox.SelectedItem as string;
             byte[] _data = imageConverter.Encode();
-            System.IO.File.WriteAllBytes(path, _data);
+
+            //Remove file ending
+            int _cutIndex = path.LastIndexOf('.');
+            if(_cutIndex > 0) path = path.Remove(_cutIndex);
+
+            //Save converted image
+            System.IO.File.WriteAllBytes(path + "." + imageConverter.GetFileEnding(), _data);
         }
 
         private void tableLayoutPanel2_Paint(object sender, PaintEventArgs e)
@@ -224,5 +236,15 @@ namespace CustomImageConverter
             }
         }
 
+        /// <summary>
+        /// Set and load converter script
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void scriptListBox_SelectedIndexChanged(object sender, EventArgs e) {
+            if(scriptListBox.SelectedItem != null) {
+                imageConverter.LoadScript(scriptListBox.SelectedItem as string);
+            }
+        }
     }
 }

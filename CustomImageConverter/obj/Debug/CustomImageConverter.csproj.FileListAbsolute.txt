@@ -7,3 +7,9 @@ D:\Projects\CustomImageConverter\CustomImageConverter\obj\Debug\CustomImageConve
 D:\Projects\CustomImageConverter\CustomImageConverter\obj\Debug\CustomImageConverter.exe
 D:\Projects\CustomImageConverter\CustomImageConverter\obj\Debug\CustomImageConverter.pdb
 D:\Projects\CustomImageConverter\CustomImageConverter\obj\Debug\CustomImageConverter.Form1.resources
+D:\Projects\CustomImageConverter\CustomImageConverter\bin\Debug\ConverterScripts\Monochrome.cs
+D:\Projects\CustomImageConverter\CustomImageConverter\bin\Debug\ConverterScripts\Grayscale.cs
+D:\Projects\CustomImageConverter\CustomImageConverter\bin\Debug\CSScriptLibrary.dll
+D:\Projects\CustomImageConverter\CustomImageConverter\bin\Debug\Mono.CSharp.dll
+D:\Projects\CustomImageConverter\CustomImageConverter\bin\Debug\CSScriptLibrary.xml
+D:\Projects\CustomImageConverter\CustomImageConverter\bin\Debug\ConverterScripts\Color565.cs

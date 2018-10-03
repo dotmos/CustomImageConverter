@@ -32,14 +32,14 @@
             this.saveImageFileDialog = new System.Windows.Forms.SaveFileDialog();
             this.fitImageCheckBox = new System.Windows.Forms.CheckBox();
             this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
-            this.scriptListBox = new System.Windows.Forms.ListBox();
-            this.openButton = new System.Windows.Forms.Button();
-            this.convertButton = new System.Windows.Forms.Button();
-            this.clearButton = new System.Windows.Forms.Button();
             this.batchConvertButton = new System.Windows.Forms.Button();
-            this.mainPictureBox = new System.Windows.Forms.PictureBox();
-            this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
+            this.clearButton = new System.Windows.Forms.Button();
+            this.convertButton = new System.Windows.Forms.Button();
+            this.openButton = new System.Windows.Forms.Button();
             this.ditheringCheckBox = new System.Windows.Forms.CheckBox();
+            this.scriptListBox = new System.Windows.Forms.ListBox();
+            this.mainPictureBox = new PictureBoxWithInterpolationMode();
+            this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
             this.progressBar = new System.Windows.Forms.ProgressBar();
             this.flowLayoutPanel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.mainPictureBox)).BeginInit();
@@ -55,7 +55,7 @@
             // 
             // saveImageFileDialog
             // 
-            this.saveImageFileDialog.Filter = "Binary (*.bin)|*.bin|All files (*.*)|*.*";
+            this.saveImageFileDialog.Filter = "All files (*.*)|*.*";
             // 
             // fitImageCheckBox
             // 
@@ -83,38 +83,16 @@
             this.flowLayoutPanel1.Size = new System.Drawing.Size(528, 29);
             this.flowLayoutPanel1.TabIndex = 2;
             // 
-            // scriptListBox
+            // batchConvertButton
             // 
-            this.scriptListBox.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.scriptListBox.FormattingEnabled = true;
-            this.scriptListBox.IntegralHeight = false;
-            this.scriptListBox.Location = new System.Drawing.Point(3, 3);
-            this.scriptListBox.MinimumSize = new System.Drawing.Size(100, 0);
-            this.scriptListBox.Name = "scriptListBox";
-            this.scriptListBox.Size = new System.Drawing.Size(100, 256);
-            this.scriptListBox.TabIndex = 3;
-            // 
-            // openButton
-            // 
-            this.openButton.AutoSize = true;
-            this.openButton.Location = new System.Drawing.Point(197, 3);
-            this.openButton.Name = "openButton";
-            this.openButton.Size = new System.Drawing.Size(75, 23);
-            this.openButton.TabIndex = 0;
-            this.openButton.Text = "Open";
-            this.openButton.UseVisualStyleBackColor = true;
-            this.openButton.Click += new System.EventHandler(this.openButton_Click);
-            // 
-            // convertButton
-            // 
-            this.convertButton.AutoSize = true;
-            this.convertButton.Location = new System.Drawing.Point(278, 3);
-            this.convertButton.Name = "convertButton";
-            this.convertButton.Size = new System.Drawing.Size(75, 23);
-            this.convertButton.TabIndex = 3;
-            this.convertButton.Text = "Convert";
-            this.convertButton.UseVisualStyleBackColor = true;
-            this.convertButton.Click += new System.EventHandler(this.convertButton_Click);
+            this.batchConvertButton.AutoSize = true;
+            this.batchConvertButton.Location = new System.Drawing.Point(440, 3);
+            this.batchConvertButton.Name = "batchConvertButton";
+            this.batchConvertButton.Size = new System.Drawing.Size(85, 23);
+            this.batchConvertButton.TabIndex = 4;
+            this.batchConvertButton.Text = "Batch Convert";
+            this.batchConvertButton.UseVisualStyleBackColor = true;
+            this.batchConvertButton.Click += new System.EventHandler(this.batchConvertButton_Click);
             // 
             // clearButton
             // 
@@ -127,16 +105,50 @@
             this.clearButton.UseVisualStyleBackColor = true;
             this.clearButton.Click += new System.EventHandler(this.clearButton_Click);
             // 
-            // batchConvertButton
+            // convertButton
             // 
-            this.batchConvertButton.AutoSize = true;
-            this.batchConvertButton.Location = new System.Drawing.Point(440, 3);
-            this.batchConvertButton.Name = "batchConvertButton";
-            this.batchConvertButton.Size = new System.Drawing.Size(85, 23);
-            this.batchConvertButton.TabIndex = 4;
-            this.batchConvertButton.Text = "Batch Convert";
-            this.batchConvertButton.UseVisualStyleBackColor = true;
-            this.batchConvertButton.Click += new System.EventHandler(this.batchConvertButton_Click);
+            this.convertButton.AutoSize = true;
+            this.convertButton.Location = new System.Drawing.Point(278, 3);
+            this.convertButton.Name = "convertButton";
+            this.convertButton.Size = new System.Drawing.Size(75, 23);
+            this.convertButton.TabIndex = 3;
+            this.convertButton.Text = "Convert";
+            this.convertButton.UseVisualStyleBackColor = true;
+            this.convertButton.Click += new System.EventHandler(this.convertButton_Click);
+            // 
+            // openButton
+            // 
+            this.openButton.AutoSize = true;
+            this.openButton.Location = new System.Drawing.Point(197, 3);
+            this.openButton.Name = "openButton";
+            this.openButton.Size = new System.Drawing.Size(75, 23);
+            this.openButton.TabIndex = 0;
+            this.openButton.Text = "Open";
+            this.openButton.UseVisualStyleBackColor = true;
+            this.openButton.Click += new System.EventHandler(this.openButton_Click);
+            // 
+            // ditheringCheckBox
+            // 
+            this.ditheringCheckBox.AutoSize = true;
+            this.ditheringCheckBox.Location = new System.Drawing.Point(58, 3);
+            this.ditheringCheckBox.Name = "ditheringCheckBox";
+            this.ditheringCheckBox.Size = new System.Drawing.Size(133, 17);
+            this.ditheringCheckBox.TabIndex = 5;
+            this.ditheringCheckBox.Text = "Monochrome Dithering";
+            this.ditheringCheckBox.UseVisualStyleBackColor = true;
+            this.ditheringCheckBox.CheckedChanged += new System.EventHandler(this.ditheringCheckBox_CheckedChanged);
+            // 
+            // scriptListBox
+            // 
+            this.scriptListBox.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.scriptListBox.FormattingEnabled = true;
+            this.scriptListBox.IntegralHeight = false;
+            this.scriptListBox.Location = new System.Drawing.Point(3, 3);
+            this.scriptListBox.MinimumSize = new System.Drawing.Size(100, 4);
+            this.scriptListBox.Name = "scriptListBox";
+            this.scriptListBox.Size = new System.Drawing.Size(100, 256);
+            this.scriptListBox.TabIndex = 3;
+            this.scriptListBox.SelectedIndexChanged += new System.EventHandler(this.scriptListBox_SelectedIndexChanged);
             // 
             // mainPictureBox
             // 
@@ -168,17 +180,6 @@
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
             this.tableLayoutPanel2.Size = new System.Drawing.Size(640, 317);
             this.tableLayoutPanel2.TabIndex = 4;
-            // 
-            // ditheringCheckBox
-            // 
-            this.ditheringCheckBox.AutoSize = true;
-            this.ditheringCheckBox.Location = new System.Drawing.Point(58, 3);
-            this.ditheringCheckBox.Name = "ditheringCheckBox";
-            this.ditheringCheckBox.Size = new System.Drawing.Size(133, 17);
-            this.ditheringCheckBox.TabIndex = 5;
-            this.ditheringCheckBox.Text = "Monochrome Dithering";
-            this.ditheringCheckBox.UseVisualStyleBackColor = true;
-            this.ditheringCheckBox.CheckedChanged += new System.EventHandler(this.ditheringCheckBox_CheckedChanged);
             // 
             // progressBar
             // 
@@ -218,7 +219,7 @@
         private System.Windows.Forms.Button convertButton;
         private System.Windows.Forms.Button openButton;
         private System.Windows.Forms.ListBox scriptListBox;
-        private System.Windows.Forms.PictureBox mainPictureBox;
+        private PictureBoxWithInterpolationMode mainPictureBox;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel2;
         private System.Windows.Forms.CheckBox ditheringCheckBox;
         private System.Windows.Forms.ProgressBar progressBar;
