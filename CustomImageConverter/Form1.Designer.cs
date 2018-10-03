@@ -155,9 +155,11 @@
             this.mainPictureBox.BackColor = System.Drawing.SystemColors.ControlDark;
             this.mainPictureBox.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             this.mainPictureBox.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.mainPictureBox.InterpolationMode = System.Drawing.Drawing2D.InterpolationMode.Default;
             this.mainPictureBox.Location = new System.Drawing.Point(109, 3);
             this.mainPictureBox.Name = "mainPictureBox";
             this.mainPictureBox.Size = new System.Drawing.Size(528, 256);
+            this.mainPictureBox.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
             this.mainPictureBox.TabIndex = 0;
             this.mainPictureBox.TabStop = false;
             // 

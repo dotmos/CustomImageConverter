@@ -77,7 +77,7 @@ namespace CustomImageConverter
                 mainPictureBox.SizeMode = PictureBoxSizeMode.Zoom;
             } else {
                 mainPictureBox.InterpolationMode = System.Drawing.Drawing2D.InterpolationMode.Default;
-                mainPictureBox.SizeMode = PictureBoxSizeMode.Normal;
+                mainPictureBox.SizeMode = PictureBoxSizeMode.CenterImage;
             }
         }
 
