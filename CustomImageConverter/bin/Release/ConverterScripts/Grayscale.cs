@@ -1,6 +1,12 @@
 ﻿using System;
 
 public class Grayscale{
+    readonly string fileEnding = "gry";
+
+    public string FileEnding() {
+        return fileEnding;
+    }
+
     public byte[] Encode(byte[] pixels, int width, int height)
     {
         //Output byte array

@@ -12,3 +12,4 @@ D:\Projects\CustomImageConverter\CustomImageConverter\bin\Release\CSScriptLibrar
 D:\Projects\CustomImageConverter\CustomImageConverter\bin\Release\Mono.CSharp.dll
 D:\Projects\CustomImageConverter\CustomImageConverter\bin\Release\ConverterScripts\Monochrome.cs
 D:\Projects\CustomImageConverter\CustomImageConverter\bin\Release\ConverterScripts\Grayscale.cs
+D:\Projects\CustomImageConverter\CustomImageConverter\bin\Release\ConverterScripts\Color565.cs

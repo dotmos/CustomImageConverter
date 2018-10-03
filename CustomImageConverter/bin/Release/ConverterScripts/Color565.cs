@@ -2,8 +2,14 @@
 
 using System;
 
-public class ST7735
+public class Color565
 {
+    readonly string fileEnding = "565";
+
+    public string FileEnding() {
+        return fileEnding;
+    }
+
     public byte[] Encode(byte[] pixels, int width, int height)
     {
         //Output byte array
