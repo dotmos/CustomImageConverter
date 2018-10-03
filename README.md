@@ -1,3 +1,5 @@
+<img src="Documentation/Images/converter.jpg" alt="CustomImageConverter"/>
+
 # CustomImageConverter
 A super simple (read: hacky and ugly) custom image converter, which uses user created C# scripts to encode/decode images.
 
@@ -9,6 +11,7 @@ Comes with examples to convert images to imagecontroller formats so they can dir
 
 Also included: A hacked-in monochrome dithering filter to get that HD graphics to your monochrome display ...
 
+<img src="Documentation/Images/monoDithering.jpg" alt="Dithering"/>
 
 
 Example encode/decode script for monochrome:
