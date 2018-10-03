@@ -14,6 +14,13 @@ Also included: A hacked-in monochrome dithering filter to get that HD graphics t
 Example encode/decode script for monochrome:
 ```csharp
 public class Monochrome{
+
+    readonly string fileEnding = "mon";
+    
+    public string FileEnding(){
+        return fileEnding;
+    }
+
     public byte[] Encode(byte[] pixels, int width, int height)
     {
         //Output byte array
