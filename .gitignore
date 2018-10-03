@@ -2,3 +2,5 @@
 /CustomImageConverter/bin/Debug
 /AnimationDataCreator/bin/Debug
 /.vs
+/CustomImageConverter/obj
+/AnimationDataCreator/obj
