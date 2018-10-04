@@ -276,5 +276,11 @@ namespace AnimationDataCreator {
                 complexAnimationData.SetFrametime(_frametime);
             }
         }
+
+        private void exportToolStripMenuItem_Click(object sender, EventArgs e) {
+            if (saveExportFileDialog.ShowDialog() == System.Windows.Forms.DialogResult.OK) {
+                System.IO.File.WriteAllBytes(saveExportFileDialog.FileName, complexAnimationData.ExportToBytes());
+            }
+        }
     }
 }

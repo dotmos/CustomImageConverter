@@ -46,6 +46,9 @@
             this.comboBoxAnimationType = new System.Windows.Forms.ComboBox();
             this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
             this.tableLayoutPanel3 = new System.Windows.Forms.TableLayoutPanel();
+            this.tableLayoutPanelSimpleAnimation = new System.Windows.Forms.TableLayoutPanel();
+            this.simple_labelFrametime = new System.Windows.Forms.Label();
+            this.simple_textBoxFrametime = new System.Windows.Forms.TextBox();
             this.openImageFileDialog = new System.Windows.Forms.OpenFileDialog();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.fileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -56,9 +59,7 @@
             this.quitToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.saveAnimationFileDialog = new System.Windows.Forms.SaveFileDialog();
             this.openAnimationFileDialog = new System.Windows.Forms.OpenFileDialog();
-            this.tableLayoutPanelSimpleAnimation = new System.Windows.Forms.TableLayoutPanel();
-            this.simple_labelFrametime = new System.Windows.Forms.Label();
-            this.simple_textBoxFrametime = new System.Windows.Forms.TextBox();
+            this.saveExportFileDialog = new System.Windows.Forms.SaveFileDialog();
             this.tableLayoutPanelComplexAnimation.SuspendLayout();
             this.tableLayoutPanel5.SuspendLayout();
             this.tableLayoutPanel6.SuspendLayout();
@@ -66,8 +67,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxFrame)).BeginInit();
             this.tableLayoutPanel2.SuspendLayout();
             this.tableLayoutPanel3.SuspendLayout();
-            this.menuStrip1.SuspendLayout();
             this.tableLayoutPanelSimpleAnimation.SuspendLayout();
+            this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
             // tableLayoutPanelComplexAnimation
@@ -332,7 +333,7 @@
             this.labelAnimationType.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.labelAnimationType.AutoSize = true;
             this.labelAnimationType.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelAnimationType.Location = new System.Drawing.Point(5, 11);
+            this.labelAnimationType.Location = new System.Drawing.Point(5, 12);
             this.labelAnimationType.Name = "labelAnimationType";
             this.labelAnimationType.Size = new System.Drawing.Size(83, 13);
             this.labelAnimationType.TabIndex = 0;
@@ -342,7 +343,7 @@
             // 
             this.comboBoxAnimationType.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
             this.comboBoxAnimationType.FormattingEnabled = true;
-            this.comboBoxAnimationType.Location = new System.Drawing.Point(164, 7);
+            this.comboBoxAnimationType.Location = new System.Drawing.Point(164, 8);
             this.comboBoxAnimationType.Name = "comboBoxAnimationType";
             this.comboBoxAnimationType.Size = new System.Drawing.Size(190, 21);
             this.comboBoxAnimationType.TabIndex = 1;
@@ -382,9 +383,48 @@
             this.tableLayoutPanel3.Location = new System.Drawing.Point(3, 3);
             this.tableLayoutPanel3.Name = "tableLayoutPanel3";
             this.tableLayoutPanel3.RowCount = 1;
-            this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 32F));
+            this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 34F));
             this.tableLayoutPanel3.Size = new System.Drawing.Size(359, 32);
             this.tableLayoutPanel3.TabIndex = 0;
+            // 
+            // tableLayoutPanelSimpleAnimation
+            // 
+            this.tableLayoutPanelSimpleAnimation.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.tableLayoutPanelSimpleAnimation.CellBorderStyle = System.Windows.Forms.TableLayoutPanelCellBorderStyle.Inset;
+            this.tableLayoutPanelSimpleAnimation.ColumnCount = 2;
+            this.tableLayoutPanelSimpleAnimation.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 44.56824F));
+            this.tableLayoutPanelSimpleAnimation.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 55.43176F));
+            this.tableLayoutPanelSimpleAnimation.Controls.Add(this.simple_labelFrametime, 0, 0);
+            this.tableLayoutPanelSimpleAnimation.Controls.Add(this.simple_textBoxFrametime, 1, 0);
+            this.tableLayoutPanelSimpleAnimation.Location = new System.Drawing.Point(3, 57);
+            this.tableLayoutPanelSimpleAnimation.Name = "tableLayoutPanelSimpleAnimation";
+            this.tableLayoutPanelSimpleAnimation.RowCount = 1;
+            this.tableLayoutPanelSimpleAnimation.RowStyles.Add(new System.Windows.Forms.RowStyle());
+            this.tableLayoutPanelSimpleAnimation.Size = new System.Drawing.Size(359, 32);
+            this.tableLayoutPanelSimpleAnimation.TabIndex = 1;
+            // 
+            // simple_labelFrametime
+            // 
+            this.simple_labelFrametime.Anchor = System.Windows.Forms.AnchorStyles.Left;
+            this.simple_labelFrametime.AutoSize = true;
+            this.simple_labelFrametime.Location = new System.Drawing.Point(5, 9);
+            this.simple_labelFrametime.Name = "simple_labelFrametime";
+            this.simple_labelFrametime.Size = new System.Drawing.Size(58, 13);
+            this.simple_labelFrametime.TabIndex = 0;
+            this.simple_labelFrametime.Text = "Frametime:";
+            // 
+            // simple_textBoxFrametime
+            // 
+            this.simple_textBoxFrametime.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            this.simple_textBoxFrametime.Location = new System.Drawing.Point(164, 6);
+            this.simple_textBoxFrametime.Name = "simple_textBoxFrametime";
+            this.simple_textBoxFrametime.Size = new System.Drawing.Size(190, 20);
+            this.simple_textBoxFrametime.TabIndex = 1;
+            this.simple_textBoxFrametime.Text = "128";
+            this.simple_textBoxFrametime.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.simple_textBoxFrametime.TextChanged += new System.EventHandler(this.simple_textBoxFrametime_TextChanged);
             // 
             // openImageFileDialog
             // 
@@ -441,6 +481,7 @@
             this.exportToolStripMenuItem.Name = "exportToolStripMenuItem";
             this.exportToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.exportToolStripMenuItem.Text = "Export";
+            this.exportToolStripMenuItem.Click += new System.EventHandler(this.exportToolStripMenuItem_Click);
             // 
             // quitToolStripMenuItem
             // 
@@ -457,44 +498,9 @@
             // 
             this.openAnimationFileDialog.Filter = "Animation (*.anim)|*.anim";
             // 
-            // tableLayoutPanelSimpleAnimation
+            // saveExportFileDialog
             // 
-            this.tableLayoutPanelSimpleAnimation.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.tableLayoutPanelSimpleAnimation.CellBorderStyle = System.Windows.Forms.TableLayoutPanelCellBorderStyle.Inset;
-            this.tableLayoutPanelSimpleAnimation.ColumnCount = 2;
-            this.tableLayoutPanelSimpleAnimation.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 44.56824F));
-            this.tableLayoutPanelSimpleAnimation.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 55.43176F));
-            this.tableLayoutPanelSimpleAnimation.Controls.Add(this.simple_labelFrametime, 0, 0);
-            this.tableLayoutPanelSimpleAnimation.Controls.Add(this.simple_textBoxFrametime, 1, 0);
-            this.tableLayoutPanelSimpleAnimation.Location = new System.Drawing.Point(3, 57);
-            this.tableLayoutPanelSimpleAnimation.Name = "tableLayoutPanelSimpleAnimation";
-            this.tableLayoutPanelSimpleAnimation.RowCount = 1;
-            this.tableLayoutPanelSimpleAnimation.RowStyles.Add(new System.Windows.Forms.RowStyle());
-            this.tableLayoutPanelSimpleAnimation.Size = new System.Drawing.Size(359, 32);
-            this.tableLayoutPanelSimpleAnimation.TabIndex = 1;
-            // 
-            // simple_labelFrametime
-            // 
-            this.simple_labelFrametime.Anchor = System.Windows.Forms.AnchorStyles.Left;
-            this.simple_labelFrametime.AutoSize = true;
-            this.simple_labelFrametime.Location = new System.Drawing.Point(5, 9);
-            this.simple_labelFrametime.Name = "simple_labelFrametime";
-            this.simple_labelFrametime.Size = new System.Drawing.Size(58, 13);
-            this.simple_labelFrametime.TabIndex = 0;
-            this.simple_labelFrametime.Text = "Frametime:";
-            // 
-            // simple_textBoxFrametime
-            // 
-            this.simple_textBoxFrametime.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.simple_textBoxFrametime.Location = new System.Drawing.Point(164, 6);
-            this.simple_textBoxFrametime.Name = "simple_textBoxFrametime";
-            this.simple_textBoxFrametime.Size = new System.Drawing.Size(190, 20);
-            this.simple_textBoxFrametime.TabIndex = 1;
-            this.simple_textBoxFrametime.Text = "128";
-            this.simple_textBoxFrametime.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
-            this.simple_textBoxFrametime.TextChanged += new System.EventHandler(this.simple_textBoxFrametime_TextChanged);
+            this.saveExportFileDialog.Filter = "Byte Animation Data (*.bad)|*.bad";
             // 
             // Form1
             // 
@@ -519,10 +525,10 @@
             this.tableLayoutPanel2.ResumeLayout(false);
             this.tableLayoutPanel3.ResumeLayout(false);
             this.tableLayoutPanel3.PerformLayout();
-            this.menuStrip1.ResumeLayout(false);
-            this.menuStrip1.PerformLayout();
             this.tableLayoutPanelSimpleAnimation.ResumeLayout(false);
             this.tableLayoutPanelSimpleAnimation.PerformLayout();
+            this.menuStrip1.ResumeLayout(false);
+            this.menuStrip1.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -566,6 +572,7 @@
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanelSimpleAnimation;
         private System.Windows.Forms.Label simple_labelFrametime;
         private System.Windows.Forms.TextBox simple_textBoxFrametime;
+        private System.Windows.Forms.SaveFileDialog saveExportFileDialog;
     }
 }
 

@@ -250,5 +250,39 @@ namespace AnimationDataCreator {
             }
             animationInstance.data.Clear();
         }
+
+        /// <summary>
+        /// Serializes the animation for export.
+        /// </summary>
+        /// <returns></returns>
+        public byte[] ExportToBytes() {
+            List<byte> result = new List<byte>();
+
+            //Add version
+            result.Add(0);
+
+            //Add animation type
+            result.Add((byte)this.animationType);
+
+            //Add data
+            if(this.animationType == AnimationType.Simple) {
+                //Frametime between frames
+                result.AddRange(BitConverter.GetBytes((short)this.GetFrametime()));
+                //TODO: first and last image ID
+
+            }
+            else if(this.animationType == AnimationType.Complex) {
+                //Amount of complex animation frames
+                result.AddRange(BitConverter.GetBytes((short)this.data.Count));
+                foreach(FrameData fd in this.data) {
+                    //ID of the image
+                    result.AddRange(BitConverter.GetBytes((short)fd.imageID));
+                    //frametime of the frame
+                    result.AddRange(BitConverter.GetBytes((short)fd.frameTime));
+                }
+            }
+
+            return result.ToArray();
+        }
     }
 }
