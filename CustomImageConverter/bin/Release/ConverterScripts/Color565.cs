@@ -27,6 +27,8 @@ public class Color565
             //Encode for ST7735 / ILI9341
             // ((red & 0xF8) << 8) | ((green & 0xFC) << 3) | (blue >> 3);
             int _c = ((pixels[(i * 4) + 2] & 0xF8) << 8) | ((pixels[(i * 4) + 1] & 0xFC) << 3) | (pixels[(i * 4)] >> 3);
+	    //Full transparent alpha -> make it black
+	    if(pixels[(i*4)+3] == 0) _c = 0;
 
             //Convert to bytes
             //byte[] intBytes = BitConverter.GetBytes(_c);

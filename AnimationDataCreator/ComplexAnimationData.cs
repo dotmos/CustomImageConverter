@@ -268,7 +268,7 @@ namespace AnimationDataCreator {
             if(this.animationType == AnimationType.Simple) {
                 //Frametime between frames
                 result.AddRange(BitConverter.GetBytes((short)this.GetFrametime()));
-                //TODO: first and last image ID
+                //TODO: first and last image ID?
 
             }
             else if(this.animationType == AnimationType.Complex) {
